@@ -1,0 +1,83 @@
+﻿@page
+@model VolterV2.Pages.Currencies.CurrencyListModel
+@{
+}
+
+
+
+
+<br />
+
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">Currencies List</h2>
+    </div>
+    <div class="col-3">
+        <a asp-page="Create" class="btn btn-info form-control text-white">Create new Currency</a>
+        <br/>
+    </div>
+
+
+<div>
+    <br/>
+    <form method="get">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="text-info"> Search for Currency:  </span>
+                <input type="search" asp-for="SearchTerm" size="20" />
+                <span class="input-group-btn">
+                    <button class="btn btn-info btn-sm text-white">
+                        Search
+                    </button>
+                </span>
+            </div>
+        </div>
+    </form>
+</div>
+
+    <div class="col-12 border p-3 mt-3">
+        <form method="post">
+            @if (Model.Currencies.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            <label asp-for="Currencies.FirstOrDefault().Name"></label>
+                        </th>
+                        <th>
+
+                            <label asp-for="Currencies.FirstOrDefault().ShortName"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Currencies.FirstOrDefault().Value">Value(PLN)</label>
+                        </th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model.Currencies)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.ShortName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => item.Value)
+                            </td>
+                            <td>
+                                <button asp-page-handler="Delete" asp-route-id="@item.Id" onclick="return confirm('Sure to delete?')" class="btn btn-danger btn-sm">Delete</button>
+                                <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Edit</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <p>No currencies available</p>
+            }
+        </form>
+    </div>
+</div>
+ 

@@ -1,0 +1,34 @@
+﻿@page
+@model VolterV2.Pages.Currencies.CurrencyCalculatorModel
+@{
+}
+
+
+
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">Currencies Calculator</h2>
+    </div>
+    <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div>
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th> <label> Source Currency</label> </th>
+                    <th> <label> Value </label> </th>
+                    <th> <label> Destination Currency</label> </th>
+                    <th> <label>  </label> </th>
+                    <th> <label> Result </label> </th>
+                </tr>
+                <tr>
+                    <td> <select asp-items="Model.Options" asp-for="SourceCurrency"></select> </td>
+                    <td> <input type="text" asp-for="SourceCurrencyValue" class="form-control" /> </td>
+                    <td> <select asp-items="Model.Options" asp-for="DestinationCurrency"></select> </td>
+                    <td> <input type="submit" class="btn btn-success btn-sm text-white" value="Calculate" /> </td>
+                    <td> <label>@Model.SResult</label> </td>
+                </tr>
+            </table>
+            <span asp-validation-for="SourceCurrencyValue" class="text-danger"> </span>
+        </div>
+    </form>
+</div>
