@@ -1,0 +1,78 @@
+﻿@page
+@model OnlineCantor.Pages.Currencies.CurrencyChartModel
+@{
+}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+ @Model.tempId
+ @Model.Currency.Id
+
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    <script type="text/javascript">
+
+        Highcharts.chart('container', {
+
+            title: {
+                text: '3 day currency rate'
+            },
+
+            subtitle: {
+                text: 'Source: NBP statistics'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Currency rate'
+                }
+            },
+
+            xAxis: {
+                type: 'datetime',
+                accessibility: {
+                    rangeDescription: 'Range: 3 days ago to today'
+                }
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: Date.UTC(@Model.ThreeDaysAgoCurrency.DataTime.Year, @(Model.ThreeDaysAgoCurrency.DataTime.Month-1), @Model.ThreeDaysAgoCurrency.DataTime.Day),
+                    //pointStart: Date.UTC(2020, 10, 09),
+                    pointInterval: 24 * 3600 * 1000
+                }
+            },
+
+            series: [{
+                name: '@Model.Currency.Name',
+                data: [@Model.oldest, @Model.middle, @Model.newest]
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+
+
+    </script>
+</figure>

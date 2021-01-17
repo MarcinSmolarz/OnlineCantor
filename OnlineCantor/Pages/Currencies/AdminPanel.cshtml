@@ -1,0 +1,19 @@
+﻿@page
+@model OnlineCantor.Pages.Currencies.AdminPanelModel
+@{
+}
+
+<br />
+<h2 class="text-info">Manage Currencies</h2>
+<div class="border container" style="padding:30px">
+    <form method="post">
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <input type="submit" value="Get Currencies from API" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="CurrencyList" class="btn btn-success form-control">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>

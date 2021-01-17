@@ -1,0 +1,55 @@
+﻿@page
+@model OnlineCantor.Pages.Currencies.EditModel
+@{
+}
+
+
+<br />
+<h2 class="text-info">Edit Currency</h2>
+<div class="border container" style="padding:30px">
+    <form method="post">
+        <input type="hidden" asp-for="Currency.Id" />
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Currency.Name"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Currency.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Currency.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Currency.ShortName"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Currency.ShortName" class="form-control" />
+            </div>
+            <span asp-validation-for="Currency.ShortName" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Currency.Value"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Currency.Value" class="form-control" />
+            </div>
+            <span asp-validation-for="Currency.Value" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <input type="submit" value="Update" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="CurrencyList" class="btn btn-success form-control">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" /> @*ta klauzula zapewnia obługę błedu nazwy
+        Błąd dzięki temu obsługiwany jest po stornie klienta,
+        nie po stronie serwera. Dobrze widać to na wideo w kursie*@
+}
